@@ -14,8 +14,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ShellComponent } from './shell/shell.component';
+import { NavigationShellComponent } from './components/navigation-shell/navigation-shell.component';
 
-const components = [ShellComponent];
+const components = [ShellComponent,NavigationShellComponent];
 
 const modules = [
   CommonModule,
@@ -26,7 +27,6 @@ const modules = [
   MatSidenavModule,
   MatListModule,
   MatMenuModule,
-  MatIconModule,
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
