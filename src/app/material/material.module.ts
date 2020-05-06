@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ShellComponent } from './shell/shell.component';
 import { NavigationShellComponent } from './components/navigation-shell/navigation-shell.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const components = [ShellComponent,NavigationShellComponent];
 
@@ -35,8 +37,8 @@ const modules = [
 ];
 
 @NgModule({
-  declarations: [...components],
-  imports: [...modules],
+  declarations: [...components, DashboardComponent],
+  imports: [...modules, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, LayoutModule],
   exports: [...components, ...modules],
 })
 export class MaterialModule {}
