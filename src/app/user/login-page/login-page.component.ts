@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import {AuthService} from '../services/auth.service'
 
 
 
@@ -10,7 +11,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public afAuth: AngularFireAuth, public auth: AuthService) { }
 
   ngOnInit(): void {
   }
