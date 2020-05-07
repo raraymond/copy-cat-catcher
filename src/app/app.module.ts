@@ -13,13 +13,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import {environment} from '../environments/environment'
+import {environment} from '../environments/environment';
 
 
 const config = environment.firebaseConfig
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent],
+  declarations: [AppComponent, HomePageComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -12,6 +12,7 @@
             <div *ngIf="auth.user$ | async as user ">
                 <a mat-list-item routerLink="/dashboard" (click)="drawer.close()">Dashboard</a>
                 <a mat-list-item routerLink="/kanban" (click)="drawer.close()">Kanban</a>
+                <a mat-list-item routerLink="/upload" (click)="drawer.close()">Upload</a>
                 <a mat-list-item (click)="auth.signOut() ">Logout</a>
             </div>
 
@@ -32,6 +33,7 @@
             <div *ngIf="auth.user$ | async as user ">
                 <a mat-button routerLink="/dashboard ">Dashboard</a>
                 <a mat-button routerLink="/kanban ">Kanban</a>
+                <a mat-button routerLink="/upload ">Upload</a>
                 <a mat-button (click)="auth.signOut() ">Logout</a>
             </div>
 
