@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import {
+  AngularFireStorage,
+  AngularFireUploadTask,
+} from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
@@ -9,10 +12,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'upload-task',
   templateUrl: './upload-task.component.html',
-  styleUrls: ['./upload-task.component.scss']
+  styleUrls: ['./upload-task.component.scss'],
 })
 export class UploadTaskComponent implements OnInit {
-
   @Input() file: File;
 
   task: AngularFireUploadTask;
@@ -21,14 +23,17 @@ export class UploadTaskComponent implements OnInit {
   snapshot: Observable<any>;
   downloadURL: string;
 
-  constructor(private storage: AngularFireStorage, private db: AngularFirestore, private afAuth: AngularFireAuth  ) { }
+  constructor(
+    private storage: AngularFireStorage,
+    private db: AngularFirestore,
+    private afAuth: AngularFireAuth
+  ) {}
 
   ngOnInit() {
     this.startUpload();
   }
 
   startUpload() {
-
     // The storage path
     const path = `test/${Date.now()}_${this.file.name}`;
 
@@ -40,21 +45,24 @@ export class UploadTaskComponent implements OnInit {
 
     // Progress monitoring
     this.percentage = this.task.percentageChanges();
-
-    this.snapshot   = this.task.snapshotChanges().pipe(
+    //add a file document to firebase
+    this.snapshot = this.task.snapshotChanges().pipe(
       tap(console.log),
       // The file's download URL
-      finalize( async() =>  {
+      finalize(async () => {
         const user = await this.afAuth.currentUser;
         this.downloadURL = await ref.getDownloadURL().toPromise();
-        this.db.collection('files').add( {  uid: user.uid,
-           downloadURL: this.downloadURL, path });
-      }),
+        this.db
+          .collection('files')
+          .add({ uid: user.uid, downloadURL: this.downloadURL, path });
+      })
     );
   }
 
   isActive(snapshot) {
-    return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
+    return (
+      snapshot.state === 'running' &&
+      snapshot.bytesTransferred < snapshot.totalBytes
+    );
   }
-
 }
